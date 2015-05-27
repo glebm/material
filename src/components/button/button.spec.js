@@ -84,6 +84,22 @@ describe('md-button', function() {
 
   });
 
+  describe('with ng-attr-href', function() {
+
+    it('should be anchor if ng-attr-href is non-undefined', inject(function($compile, $rootScope) {
+      var button = $compile('<md-button ng-attr-href="">')($rootScope.$new());
+      $rootScope.$apply();
+      expect(button[0].tagName.toLowerCase()).toEqual('a');
+    }));
+
+    it('should be anchor if ng-attr-href is undefined', inject(function($compile, $rootScope) {
+      var button = $compile('<md-button ng-attr-href="{{undefined}}">')($rootScope.$new());
+      $rootScope.$apply();
+      expect(button[0].tagName.toLowerCase()).toEqual('button');
+    }));
+
+  });
+
 
   describe('with ng-disabled', function() {
 
